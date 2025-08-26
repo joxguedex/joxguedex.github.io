@@ -1,0 +1,168 @@
+@font-face {
+    font-family: 'PixelFont';
+    src: url('NokiaCellphoneFC.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: PixelFont, sans-serif;
+    background-color: #f7e7d6;
+    padding: 20px;
+}
+
+/* Estilos para la barra de navegación en escritorio */
+.main-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+.navbar-logo {
+    font-weight: bold;
+    font-size: 3em;
+    text-decoration: none;
+    color: black;
+}
+.navbar-links {
+    display: flex;
+    gap: 20px;
+}
+.navbar-link {
+    text-decoration: none;
+    color: black;
+    font-size: 2em;
+}
+
+/* Estilos de la ventana */
+.container {
+    display: grid;
+    gap: 20px;
+    /* Grid para escritorio */
+    grid-template-areas:
+        "header header header"
+        "main main sidebar"
+        "footer footer sidebar";
+    position: relative;
+}
+.window {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 8px;
+    box-shadow: 4px 4px 0px 0px black;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+.window-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border-bottom: 2px solid black;
+    padding-bottom: 10px;
+}
+.window-dots {
+    display: flex;
+    gap: 5px;
+    z-index: 2;
+}
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+}
+.address-bar {
+    flex-grow: 1;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 0px 10px;
+    margin: 0 10px;
+    background-color: #f0e6e6;
+}
+.reload-icon {
+    font-size: 20px;
+    z-index: 2;
+}
+h2 {
+    margin-top: 0;
+}
+
+/* Posicionamiento para escritorio (más de 768px) */
+#about-me {
+    grid-area: header;
+    max-width: 500px;
+    margin-top: 30px;
+    margin-left: 800px;
+    z-index: 3;
+}
+#game-info {
+    grid-area: main;
+    margin-top: -180px;
+    margin-left: 30px;
+    z-index: 2;
+}
+#links {
+    grid-area: sidebar;
+    margin-top: 310px;
+    margin-left: -140px;
+    z-index: 4;
+}
+
+/* -------------------------------------------------- */
+/* --- Media Query para dispositivos móviles --- */
+/* -------------------------------------------------- */
+@media (max-width: 768px) {
+    body {
+        padding: 10px; /* Reducir el padding en móviles */
+    }
+
+    /* Ocultar la navegación de escritorio y mostrar un botón de menú si lo necesitas */
+    .navbar-links {
+        display: none; /* Ocultar los enlaces de navegación */
+    }
+
+    .main-navbar {
+        flex-direction: column; /* Apilar logo y enlaces si se necesitan */
+        align-items: flex-start;
+        margin-bottom: 10px;
+    }
+
+    /* Reducir el tamaño de la fuente del logo */
+    .navbar-logo {
+        font-size: 2em;
+    }
+
+    /* Cambiar el diseño de grid para que los elementos se apilen */
+    .container {
+        grid-template-areas:
+            "header"
+            "main"
+            "sidebar";
+        gap: 15px; /* Reducir el espacio entre elementos */
+    }
+
+    /* Reajustar la posición de las ventanas a la normalidad */
+    .window {
+        /* Restablecer las propiedades de posicionamiento que se usan en escritorio */
+        margin: 0;
+        max-width: 100%;
+        position: static;
+        top: auto;
+        left: auto;
+        right: auto;
+        bottom: auto;
+    }
+
+    #about-me, #game-info, #links {
+        /* Eliminar los márgenes negativos y el posicionamiento absoluto */
+        margin: 0;
+        z-index: auto; /* Restablecer el z-index */
+        max-width: 100%;
+    }
+}
